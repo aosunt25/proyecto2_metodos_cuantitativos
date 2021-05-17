@@ -3,8 +3,7 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import *
 from tkinter import ttk
-#from CuadradosMedios import CuadradosMedios
-
+from modelo_m_m_1 import ModeloMMUno
 
 
 class Demo1:
@@ -103,43 +102,56 @@ class MM1:
         self.label2.config(width=200)
         self.label2.config(font=("Courier", 44))
 
-        self.labelAyuda = tk.Label(
-            self.master, text="Procura que la semilla sea de 4 digitos"
-        )
-        self.labelAyuda.pack(pady=10)
-        self.labelAyuda.config(width=200)
-        self.labelAyuda.config(font=("Courier", 10))
-
         # Add buttons
-        self.labelSmilla = tk.Label(self.master, text="Semilla")
-        self.labelSmilla.place(x=10, y=200)
-        self.labelSmilla.config(width=30)
-        self.labelSmilla.config(font=("Courier", 10))
+        # clientes, lambdaM, miu, n
+        self.labelClientes = tk.Label(self.master, text="Clientes")
+        self.labelClientes.place(x=10, y=200)
+        self.labelClientes.config(width=30)
+        self.labelClientes.config(font=("Courier", 10))
 
-        self.semilla = ""
-        self.semillaEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.semilla
+        self.clientes = ""
+        self.clientesEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.clientes
         )
-        self.semillaEntered.place(x=300, y=200)
+        self.clientesEntered.place(x=300, y=200)
 
-        self.labelnRandom = tk.Label(self.master, text="")
-        self.labelnRandom.place(x=10, y=250)
-        self.labelnRandom.config(width=30)
-        self.labelnRandom.config(font=("Courier", 10))
+        self.labelLambda = tk.Label(self.master, text="Lambda")
+        self.labelLambda.place(x=10, y=250)
+        self.labelLambda.config(width=30)
+        self.labelLambda.config(font=("Courier", 10))
 
-        self.nRandoms = ""
-        self.nRandomsEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nRandoms
+        self.nLambda = ""
+        self.nLambdaEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.nLambda
         )
-        self.nRandomsEntered.place(x=300, y=250)
+        self.nLambdaEntered.place(x=300, y=250)
 
-        # nameEntered.grid(column = 0, row = 1)
+        self.labelMiu = tk.Label(self.master, text="Miu")
+        self.labelMiu.place(x=10, y=300)
+        self.labelMiu.config(width=30)
+        self.labelMiu.config(font=("Courier", 10))
 
-        print(self.semillaEntered.get())
+        self.nMiu = ""
+        self.nMiuEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.nMiu
+        )
+        self.nMiuEntered.place(x=300, y=300)
+
+        self.labelN = tk.Label(self.master, text="n >= ")
+        self.labelN.place(x=10, y=350)
+        self.labelN.config(width=30)
+        self.labelN.config(font=("Courier", 10))
+
+        self.nN = ""
+        self.nNEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.nN
+        )
+        self.nNEntered.place(x=300, y=350)
 
         self.button1 = tk.Button(
-            self.master, text="Generar", command=self.generar)
-        self.button1.place(x=170, y=300)
+            self.master, text="Calcular", command=self.generar)
+       
+        self.button1.place(x=170, y=400)
         self.button1.config(width=25, height=2)
         self.button1.config(font=("Courier", 10))
 
@@ -160,16 +172,33 @@ class MM1:
     def generar(self):
 
         self.mylist.delete(0, END)
-        self.cuadrado = CuadradosMedios()
-        semilla = self.semillaEntered.get()
-        nRandoms = self.nRandomsEntered.get()
 
-        self.cuadrado.ciclo(int(semilla), int(nRandoms))
+        clientes = int(self.clientesEntered.get())
+        nLambda = int(self.nLambdaEntered.get())
+        nMiu = int(self.nMiuEntered.get())
 
-        print(self.cuadrado.listaRands)
+        if self.nNEntered.get() != "":
+            nN = int(self.nNEntered.get())
+        else:
+            nN = 0
 
-        for i in self.cuadrado.listaRands:
-            self.mylist.insert(END, i)
+        modelo = ModeloMMUno(clientes,nLambda,nMiu, nN)
+        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso,2))
+        Pc = "P0 : " + str(round(modelo.calcularPcero(),2))
+        Pn = "Pn : " + str(round(modelo.calcularPn(),2))
+        Lq = "Lq : " + str(round(modelo.calcularLq(),2)) + " clientes"
+        L = "L : " + str(round(modelo.calcularL(),2)) + " clientes"
+        Wq = "Wq : " + str(round(modelo.calcularWq(),2)) + " horas"
+        W = "W : " + str(round(modelo.calcularW(),2)) + " horas"
+     
+        self.mylist.insert(END, ro)
+        self.mylist.insert(END, Pc)
+        self.mylist.insert(END, Pn)
+        self.mylist.insert(END, Lq)
+        self.mylist.insert(END, L)
+        self.mylist.insert(END, Wq)
+        self.mylist.insert(END, W)
+
 
     def close_windows(self):
         self.master.destroy()
