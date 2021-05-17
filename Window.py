@@ -4,6 +4,7 @@ from tkinter import filedialog
 from tkinter import *
 from tkinter import ttk
 from modelo_m_m_1 import ModeloMMUno
+#importar modelos
 
 
 class Demo1:
@@ -115,7 +116,7 @@ class MM1:
         )
         self.clientesEntered.place(x=300, y=200)
 
-        self.labelLambda = tk.Label(self.master, text="Lambda")
+        self.labelLambda = tk.Label(self.master, text="Tasa media de llegadas")
         self.labelLambda.place(x=10, y=250)
         self.labelLambda.config(width=30)
         self.labelLambda.config(font=("Courier", 10))
@@ -126,7 +127,7 @@ class MM1:
         )
         self.nLambdaEntered.place(x=300, y=250)
 
-        self.labelMiu = tk.Label(self.master, text="Miu")
+        self.labelMiu = tk.Label(self.master, text="Tasa media de servicio")
         self.labelMiu.place(x=10, y=300)
         self.labelMiu.config(width=30)
         self.labelMiu.config(font=("Courier", 10))
@@ -137,7 +138,7 @@ class MM1:
         )
         self.nMiuEntered.place(x=300, y=300)
 
-        self.labelN = tk.Label(self.master, text="n >= ")
+        self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
         self.labelN.place(x=10, y=350)
         self.labelN.config(width=30)
         self.labelN.config(font=("Courier", 10))
@@ -183,13 +184,13 @@ class MM1:
             nN = 0
 
         modelo = ModeloMMUno(clientes,nLambda,nMiu, nN)
-        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso,2))
-        Pc = "P0 : " + str(round(modelo.calcularPcero(),2))
-        Pn = "Pn : " + str(round(modelo.calcularPn(),2))
-        Lq = "Lq : " + str(round(modelo.calcularLq(),2)) + " clientes"
-        L = "L : " + str(round(modelo.calcularL(),2)) + " clientes"
-        Wq = "Wq : " + str(round(modelo.calcularWq(),2)) + " horas"
-        W = "W : " + str(round(modelo.calcularW(),2)) + " horas"
+        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso,4))
+        Pc = "P0 : " + str(round(modelo.calcularPcero(),4))
+        Pn = "Pn : " + str(round(modelo.calcularPn(),4))
+        Lq = "Lq : " + str(round(modelo.calcularLq(),4)) + " clientes"
+        L = "L : " + str(round(modelo.calcularL(),4)) + " clientes"
+        Wq = "Wq : " + str(round(modelo.calcularWq(),4)) + " horas"
+        W = "W : " + str(round(modelo.calcularW(),4)) + " horas"
      
         self.mylist.insert(END, ro)
         self.mylist.insert(END, Pc)
