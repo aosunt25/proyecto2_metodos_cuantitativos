@@ -3,7 +3,7 @@ import numpy as np
 
 class ModeloMMUno:
 
-    def __init__(self, clientes, lambdaM, miu, n):
+    def __init__(self, lambdaM, miu, n):
         #lambda
         self.media_llegadas = lambdaM
         #miu
@@ -11,11 +11,12 @@ class ModeloMMUno:
 
         self.servidores = 1
 
+        self.Cn = 0
+
         #RO
         self.factor_de_uso = self.media_llegadas/(self.media_servicios*self.servidores)
 
-        self.clientes = clientes
-
+        
         self.Pcero = 0
 
         self.Pn = 0
@@ -28,13 +29,9 @@ class ModeloMMUno:
         self.n = n
     
     def calcularPcero(self):
-        
-        if self.clientes > 100000:
-            self.Pcero = (1/(1-self.factor_de_uso))
-        else:
-            for i in range(self.clientes+1):
-                self.Pcero += self.factor_de_uso ** i
-                print(self.Pcero)
+  
+        self.Pcero = (1/(1-self.factor_de_uso))
+     
         self.Pcero = self.Pcero ** -1
         return self.Pcero
 
@@ -58,5 +55,9 @@ class ModeloMMUno:
     def calcularW(self):
         self.w = self.l/self.media_llegadas 
         return self.w
+
+    def calcularCN(self):
+        self.Cn = (self.media_llegadas/self.media_servicios)**self.n
+        return self.Cn
 
 
