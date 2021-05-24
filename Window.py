@@ -106,7 +106,7 @@ class MM1:
 
 
         self.labelLambda = tk.Label(self.master, text="Tasa media de llegadas")
-        self.labelLambda.place(x=10, y=250)
+        self.labelLambda.place(x=10, y=100)
         self.labelLambda.config(width=30)
         self.labelLambda.config(font=("Courier", 10))
 
@@ -114,10 +114,10 @@ class MM1:
         self.nLambdaEntered = ttk.Entry(
             self.master, width=40, textvariable=self.nLambda
         )
-        self.nLambdaEntered.place(x=300, y=250)
+        self.nLambdaEntered.place(x=300, y=100)
 
         self.labelMiu = tk.Label(self.master, text="Tasa media de servicio")
-        self.labelMiu.place(x=10, y=300)
+        self.labelMiu.place(x=10, y=150)
         self.labelMiu.config(width=30)
         self.labelMiu.config(font=("Courier", 10))
 
@@ -125,10 +125,10 @@ class MM1:
         self.nMiuEntered = ttk.Entry(
             self.master, width=40, textvariable=self.nMiu
         )
-        self.nMiuEntered.place(x=300, y=300)
+        self.nMiuEntered.place(x=300, y=150)
 
         self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
-        self.labelN.place(x=10, y=350)
+        self.labelN.place(x=10, y=200)
         self.labelN.config(width=30)
         self.labelN.config(font=("Courier", 10))
 
@@ -136,7 +136,29 @@ class MM1:
         self.nNEntered = ttk.Entry(
             self.master, width=40, textvariable=self.nN
         )
-        self.nNEntered.place(x=300, y=350)
+        self.nNEntered.place(x=300, y=200)
+
+        self.labelCT = tk.Label(self.master, text="Costo por tiempo espera ")
+        self.labelCT.place(x=10, y=300)
+        self.labelCT.config(width=30)
+        self.labelCT.config(font=("Courier", 10))
+
+        self.nCT = ""
+        self.nCTEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.nCT
+        )
+        self.nCTEntered.place(x=300, y=300)
+
+        self.labelCS = tk.Label(self.master, text="Costo servicio ")
+        self.labelCS.place(x=10, y=350)
+        self.labelCS.config(width=30)
+        self.labelCS.config(font=("Courier", 10))
+
+        self.CS = ""
+        self.nCSEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.CS
+        )
+        self.nCSEntered.place(x=300, y=350)
 
         self.button1 = tk.Button(
             self.master, text="Calcular", command=self.generar)
@@ -166,12 +188,19 @@ class MM1:
         nLambda = int(self.nLambdaEntered.get())
         nMiu = int(self.nMiuEntered.get())
 
+        cE = int(self.nCTEntered.get())
+        cS = int(self.nCSEntered.get())
+
+        
         if self.nNEntered.get() != "":
             nN = int(self.nNEntered.get())
         else:
             nN = 0
 
         modelo = ModeloMMUno(nLambda,nMiu, nN)
+
+        costoTotal = round((modelo.calcularLq() * cE) + cS*1, 2)
+
         ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso,4))
         Pc = "P0 : " + str(round(modelo.calcularPcero(),4))
         Pn = "Pn : " + str(round(modelo.calcularPn(),4))
@@ -180,6 +209,7 @@ class MM1:
         L = "L : " + str(round(modelo.calcularL(),4)) + " clientes"
         Wq = "Wq : " + str(round(modelo.calcularWq(),4)) + " horas"
         W = "W : " + str(round(modelo.calcularW(),4)) + " horas"
+        Costo = "Costo : $" + str(costoTotal) 
      
         self.mylist.insert(END, ro)
         self.mylist.insert(END, Pc)
@@ -189,6 +219,7 @@ class MM1:
         self.mylist.insert(END, L)
         self.mylist.insert(END, Wq)
         self.mylist.insert(END, W)
+        self.mylist.insert(END, Costo)
 
 
     def close_windows(self):
@@ -215,7 +246,7 @@ class MMs:
         # clientes, lambdaM, miu, n
 
         self.labelServidores = tk.Label(self.master, text="Servidores")
-        self.labelServidores.place(x=10, y=200)
+        self.labelServidores.place(x=10, y=100)
         self.labelServidores.config(width=30)
         self.labelServidores.config(font=("Courier", 10))
 
@@ -223,10 +254,10 @@ class MMs:
         self.servidoresEntered = ttk.Entry(
             self.master, width=40, textvariable=self.servidores
         )
-        self.servidoresEntered.place(x=300, y=200)
+        self.servidoresEntered.place(x=300, y=100)
 
         self.labelLambda = tk.Label(self.master, text="Tasa media de llegadas")
-        self.labelLambda.place(x=10, y=250)
+        self.labelLambda.place(x=10, y=150)
         self.labelLambda.config(width=30)
         self.labelLambda.config(font=("Courier", 10))
 
@@ -234,10 +265,10 @@ class MMs:
         self.nLambdaEntered = ttk.Entry(
             self.master, width=40, textvariable=self.nLambda
         )
-        self.nLambdaEntered.place(x=300, y=250)
+        self.nLambdaEntered.place(x=300, y=150)
 
         self.labelMiu = tk.Label(self.master, text="Tasa media de servicio")
-        self.labelMiu.place(x=10, y=300)
+        self.labelMiu.place(x=10, y=200)
         self.labelMiu.config(width=30)
         self.labelMiu.config(font=("Courier", 10))
 
@@ -245,10 +276,10 @@ class MMs:
         self.nMiuEntered = ttk.Entry(
             self.master, width=40, textvariable=self.nMiu
         )
-        self.nMiuEntered.place(x=300, y=300)
+        self.nMiuEntered.place(x=300, y=200)
 
         self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
-        self.labelN.place(x=10, y=350)
+        self.labelN.place(x=10, y=250)
         self.labelN.config(width=30)
         self.labelN.config(font=("Courier", 10))
 
@@ -256,7 +287,30 @@ class MMs:
         self.nNEntered = ttk.Entry(
             self.master, width=40, textvariable=self.nN
         )
-        self.nNEntered.place(x=300, y=350)
+        self.nNEntered.place(x=300, y=250)
+
+        self.labelCT = tk.Label(self.master, text="Costo por tiempo espera ")
+        self.labelCT.place(x=10, y=300)
+        self.labelCT.config(width=30)
+        self.labelCT.config(font=("Courier", 10))
+
+        self.nCT = ""
+        self.nCTEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.nCT
+        )
+        self.nCTEntered.place(x=300, y=300)
+
+
+        self.labelCS = tk.Label(self.master, text="Costo servicio ")
+        self.labelCS.place(x=10, y=350)
+        self.labelCS.config(width=30)
+        self.labelCS.config(font=("Courier", 10))
+
+        self.CS = ""
+        self.nCSEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.CS
+        )
+        self.nCSEntered.place(x=300, y=350)
 
         self.button1 = tk.Button(
             self.master, text="Calcular", command=self.generar)
@@ -282,6 +336,8 @@ class MMs:
     def generar(self):
 
         self.mylist.delete(0, END)
+        cE = int(self.nCTEntered.get())
+        cS = int(self.nCSEntered.get())
         servidores = int(self.servidoresEntered.get())
         nLambda = int(self.nLambdaEntered.get())
         nMiu = int(self.nMiuEntered.get())
@@ -292,6 +348,10 @@ class MMs:
             nN = 0
 
         modelo = ModeloMMS(servidores,nLambda,nMiu, nN)
+        
+        
+        print(servidores)
+
         ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso,4))
         Pc = "P0 : " + str(round(modelo.calcularPcero(),4))
         Pn = "Pn : " + str(round(modelo.calcularPn(),4))
@@ -299,6 +359,14 @@ class MMs:
         L = "L : " + str(round(modelo.calcularL(),4)) + " clientes"
         Wq = "Wq : " + str(round(modelo.calcularWq(),4)) + " horas"
         W = "W : " + str(round(modelo.calcularW(),4)) + " horas"
+
+        print(cE)
+        print(Lq)
+        costoTotal = round(((round(modelo.calcularLq(),4) * cE) + (cS*servidores)), 2)
+        print(round(modelo.calcularLq(),4))
+        print(costoTotal)
+        Costo = "Costo : $" + str(costoTotal) 
+
      
         self.mylist.insert(END, ro)
         self.mylist.insert(END, Pc)
@@ -307,6 +375,8 @@ class MMs:
         self.mylist.insert(END, L)
         self.mylist.insert(END, Wq)
         self.mylist.insert(END, W)
+
+        self.mylist.insert(END, Costo)
 
 
     def close_windows(self):

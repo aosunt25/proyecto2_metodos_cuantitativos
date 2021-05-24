@@ -35,20 +35,20 @@ class ModeloMMS:
             suma += (( self.media_llegadas/ self.media_servicios)** i)/math.factorial(i)
             print(suma)
 
-        self.p0 = 1/(suma + (((( self.media_llegadas/ self.media_servicios)** self.servidores)/math.factorial( self.servidores)) * (1/(1- self.factor_de_uso))))
+        self.Pcero = 1/(suma + (((( self.media_llegadas/ self.media_servicios)** self.servidores)/math.factorial( self.servidores)) * (1/(1- self.factor_de_uso))))
 
-        return self.p0
+        return self.Pcero
 
     def calcularPn(self):
         if self.n >= 0 and self.n < self.servidores:
             self.Pn = ((self.media_llegadas/self.media_servicios)**self.n)/math.factorial(self.n)
         elif self.n >= self.servidores:
-            self.Pn = ((self.media_llegadas/self.media_servicios)**self.n)/((math.factorial(self.servidores)*(self.servidores**(self.n-self.servidores))))*self.p0
+            self.Pn = ((self.media_llegadas/self.media_servicios)**self.n)/((math.factorial(self.servidores)*(self.servidores**(self.n-self.servidores))))*self.Pcero
         return self.Pn
 
     def calcularLq(self):
 
-        self.lq =  (self.p0 * pow(( self.media_llegadas/ self.media_servicios), self.servidores) * self.factor_de_uso)/(math.factorial(self.servidores)*pow(1-self.factor_de_uso,2))
+        self.lq =  (self.Pcero * pow(( self.media_llegadas/ self.media_servicios), self.servidores) * self.factor_de_uso)/(math.factorial(self.servidores)*pow(1-self.factor_de_uso,2))
         
         return self.lq
 
