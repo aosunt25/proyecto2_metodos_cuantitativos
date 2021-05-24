@@ -5,7 +5,9 @@ from tkinter import *
 from tkinter import ttk
 from modelo_m_m_1 import ModeloMMUno
 from modelo_m_m_s import ModeloMMS
-#importar modelos
+from modelo_m_g_1 import ModeloMG1
+
+# importar modelos
 
 
 class Demo1:
@@ -21,8 +23,7 @@ class Demo1:
         scrollable_frame = ttk.Frame(self.canvas)
         scrollable_frame.bind(
             "<Configure>",
-            lambda e: self.canvas.configure(
-                scrollregion=self.canvas.bbox("all")),
+            lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")),
         )
         self.canvas.create_window((0, 0), window=scrollable_frame, anchor="w")
         self.canvas.config(width=605, height=1000)
@@ -104,7 +105,6 @@ class MM1:
         self.label2.config(width=200)
         self.label2.config(font=("Courier", 44))
 
-
         self.labelLambda = tk.Label(self.master, text="Tasa media de llegadas")
         self.labelLambda.place(x=10, y=100)
         self.labelLambda.config(width=30)
@@ -122,9 +122,7 @@ class MM1:
         self.labelMiu.config(font=("Courier", 10))
 
         self.nMiu = ""
-        self.nMiuEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nMiu
-        )
+        self.nMiuEntered = ttk.Entry(self.master, width=40, textvariable=self.nMiu)
         self.nMiuEntered.place(x=300, y=150)
 
         self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
@@ -133,9 +131,7 @@ class MM1:
         self.labelN.config(font=("Courier", 10))
 
         self.nN = ""
-        self.nNEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nN
-        )
+        self.nNEntered = ttk.Entry(self.master, width=40, textvariable=self.nN)
         self.nNEntered.place(x=300, y=200)
 
         self.labelCT = tk.Label(self.master, text="Costo por tiempo espera ")
@@ -144,9 +140,7 @@ class MM1:
         self.labelCT.config(font=("Courier", 10))
 
         self.nCT = ""
-        self.nCTEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nCT
-        )
+        self.nCTEntered = ttk.Entry(self.master, width=40, textvariable=self.nCT)
         self.nCTEntered.place(x=300, y=300)
 
         self.labelCS = tk.Label(self.master, text="Costo servicio ")
@@ -155,14 +149,11 @@ class MM1:
         self.labelCS.config(font=("Courier", 10))
 
         self.CS = ""
-        self.nCSEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.CS
-        )
+        self.nCSEntered = ttk.Entry(self.master, width=40, textvariable=self.CS)
         self.nCSEntered.place(x=300, y=350)
 
-        self.button1 = tk.Button(
-            self.master, text="Calcular", command=self.generar)
-       
+        self.button1 = tk.Button(self.master, text="Calcular", command=self.generar)
+
         self.button1.place(x=170, y=400)
         self.button1.config(width=25, height=2)
         self.button1.config(font=("Courier", 10))
@@ -191,40 +182,37 @@ class MM1:
         cE = int(self.nCTEntered.get())
         cS = int(self.nCSEntered.get())
 
-        
         if self.nNEntered.get() != "":
             nN = int(self.nNEntered.get())
         else:
             nN = 0
 
-        modelo = ModeloMMUno(nLambda,nMiu, nN)
+        modelo = ModeloMMUno(nLambda, nMiu, nN)
 
-        costoTotal = round((modelo.calcularLq() * cE) + cS*1, 2)
+        costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
 
-        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso,4))
-        Pc = "P0 : " + str(round(modelo.calcularPcero(),4))
-        Pn = "Pn : " + str(round(modelo.calcularPn(),4))
-        #Cn = "Cn : " + str(round(modelo.calcularCN(),4))
-        Lq = "Lq : " + str(round(modelo.calcularLq(),4)) + " clientes"
-        L = "L : " + str(round(modelo.calcularL(),4)) + " clientes"
-        Wq = "Wq : " + str(round(modelo.calcularWq(),4)) + " horas"
-        W = "W : " + str(round(modelo.calcularW(),4)) + " horas"
-        Costo = "Costo : $" + str(costoTotal) 
-     
+        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
+        Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
+        Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
+        # Cn = "Cn : " + str(round(modelo.calcularCN(),4))
+        Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
+        L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
+        Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
+        W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+        Costo = "Costo : $" + str(costoTotal)
+
         self.mylist.insert(END, ro)
         self.mylist.insert(END, Pc)
         self.mylist.insert(END, Pn)
-        #self.mylist.insert(END, Cn)
+        # self.mylist.insert(END, Cn)
         self.mylist.insert(END, Lq)
         self.mylist.insert(END, L)
         self.mylist.insert(END, Wq)
         self.mylist.insert(END, W)
         self.mylist.insert(END, Costo)
 
-
     def close_windows(self):
         self.master.destroy()
-
 
 
 class MMs:
@@ -273,9 +261,7 @@ class MMs:
         self.labelMiu.config(font=("Courier", 10))
 
         self.nMiu = ""
-        self.nMiuEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nMiu
-        )
+        self.nMiuEntered = ttk.Entry(self.master, width=40, textvariable=self.nMiu)
         self.nMiuEntered.place(x=300, y=200)
 
         self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
@@ -284,9 +270,7 @@ class MMs:
         self.labelN.config(font=("Courier", 10))
 
         self.nN = ""
-        self.nNEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nN
-        )
+        self.nNEntered = ttk.Entry(self.master, width=40, textvariable=self.nN)
         self.nNEntered.place(x=300, y=250)
 
         self.labelCT = tk.Label(self.master, text="Costo por tiempo espera ")
@@ -295,11 +279,8 @@ class MMs:
         self.labelCT.config(font=("Courier", 10))
 
         self.nCT = ""
-        self.nCTEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nCT
-        )
+        self.nCTEntered = ttk.Entry(self.master, width=40, textvariable=self.nCT)
         self.nCTEntered.place(x=300, y=300)
-
 
         self.labelCS = tk.Label(self.master, text="Costo servicio ")
         self.labelCS.place(x=10, y=350)
@@ -307,14 +288,11 @@ class MMs:
         self.labelCS.config(font=("Courier", 10))
 
         self.CS = ""
-        self.nCSEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.CS
-        )
+        self.nCSEntered = ttk.Entry(self.master, width=40, textvariable=self.CS)
         self.nCSEntered.place(x=300, y=350)
 
-        self.button1 = tk.Button(
-            self.master, text="Calcular", command=self.generar)
-       
+        self.button1 = tk.Button(self.master, text="Calcular", command=self.generar)
+
         self.button1.place(x=170, y=400)
         self.button1.config(width=25, height=2)
         self.button1.config(font=("Courier", 10))
@@ -347,27 +325,27 @@ class MMs:
         else:
             nN = 0
 
-        modelo = ModeloMMS(servidores,nLambda,nMiu, nN)
-        
-        
+        modelo = ModeloMMS(servidores, nLambda, nMiu, nN)
+
         print(servidores)
 
-        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso,4))
-        Pc = "P0 : " + str(round(modelo.calcularPcero(),4))
-        Pn = "Pn : " + str(round(modelo.calcularPn(),4))
-        Lq = "Lq : " + str(round(modelo.calcularLq(),4)) + " clientes"
-        L = "L : " + str(round(modelo.calcularL(),4)) + " clientes"
-        Wq = "Wq : " + str(round(modelo.calcularWq(),4)) + " horas"
-        W = "W : " + str(round(modelo.calcularW(),4)) + " horas"
+        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
+        Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
+        Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
+        Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
+        L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
+        Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
+        W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
 
         print(cE)
         print(Lq)
-        costoTotal = round(((round(modelo.calcularLq(),4) * cE) + (cS*servidores)), 2)
-        print(round(modelo.calcularLq(),4))
+        costoTotal = round(
+            ((round(modelo.calcularLq(), 4) * cE) + (cS * servidores)), 2
+        )
+        print(round(modelo.calcularLq(), 4))
         print(costoTotal)
-        Costo = "Costo : $" + str(costoTotal) 
+        Costo = "Costo : $" + str(costoTotal)
 
-     
         self.mylist.insert(END, ro)
         self.mylist.insert(END, Pc)
         self.mylist.insert(END, Pn)
@@ -378,10 +356,8 @@ class MMs:
 
         self.mylist.insert(END, Costo)
 
-
     def close_windows(self):
         self.master.destroy()
-
 
 
 class MMsK:
@@ -433,8 +409,7 @@ class MMsK:
 
         print(self.semillaEntered.get())
 
-        self.button1 = tk.Button(
-            self.master, text="Generar", command=self.generar)
+        self.button1 = tk.Button(self.master, text="Generar", command=self.generar)
         self.button1.place(x=170, y=300)
         self.button1.config(width=25, height=2)
         self.button1.config(font=("Courier", 10))
@@ -478,7 +453,7 @@ class MG1:
 
         # self.bg = PhotoImage(file="fondo.gif")
 
-        self.master.geometry("1100x460")
+        self.master.geometry("1100x600")
         # Show image using label
 
         self.label2 = tk.Label(self.master, text="M/G/1")
@@ -486,48 +461,52 @@ class MG1:
         self.label2.config(width=200)
         self.label2.config(font=("Courier", 44))
 
-        self.labelAyuda = tk.Label(
-            self.master, text="Procura que la semilla sea de 4 digitos"
+        # Buttons
+        self.labelLambda = tk.Label(self.master, text="Tasa media de llegadas")
+        self.labelLambda.place(x=10, y=250)
+        self.labelLambda.config(width=30)
+        self.labelLambda.config(font=("Courier", 10))
+
+        self.nLambda = ""
+        self.nLambdaEntered = ttk.Entry(
+            self.master, width=40, textvariable=self.nLambda
         )
-        self.labelAyuda.pack(pady=10)
-        self.labelAyuda.config(width=200)
-        self.labelAyuda.config(font=("Courier", 10))
+        self.nLambdaEntered.place(x=300, y=250)
 
-        # Add buttons
-        self.labelSmilla = tk.Label(self.master, text="Semilla")
-        self.labelSmilla.place(x=10, y=200)
-        self.labelSmilla.config(width=30)
-        self.labelSmilla.config(font=("Courier", 10))
+        self.labelMiu = tk.Label(self.master, text="Tasa media de servicio")
+        self.labelMiu.place(x=10, y=300)
+        self.labelMiu.config(width=30)
+        self.labelMiu.config(font=("Courier", 10))
 
-        self.semilla = ""
-        self.semillaEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.semilla
-        )
-        self.semillaEntered.place(x=300, y=200)
+        self.nMiu = ""
+        self.nMiuEntered = ttk.Entry(self.master, width=40, textvariable=self.nMiu)
+        self.nMiuEntered.place(x=300, y=300)
 
-        self.labelnRandom = tk.Label(self.master, text="")
-        self.labelnRandom.place(x=10, y=250)
-        self.labelnRandom.config(width=30)
-        self.labelnRandom.config(font=("Courier", 10))
+        self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
+        self.labelN.place(x=10, y=350)
+        self.labelN.config(width=30)
+        self.labelN.config(font=("Courier", 10))
 
-        self.nRandoms = ""
-        self.nRandomsEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nRandoms
-        )
-        self.nRandomsEntered.place(x=300, y=250)
+        self.nN = ""
+        self.nNEntered = ttk.Entry(self.master, width=40, textvariable=self.nN)
+        self.nNEntered.place(x=300, y=350)
 
-        # nameEntered.grid(column = 0, row = 1)
+        self.labelDes = tk.Label(self.master, text="Desviación estándar ")
+        self.labelDes.place(x=10, y=400)
+        self.labelDes.config(width=30)
+        self.labelDes.config(font=("Courier", 10))
 
-        print(self.semillaEntered.get())
+        self.nDes = ""
+        self.nDesEntered = ttk.Entry(self.master, width=40, textvariable=self.nN)
+        self.nDesEntered.place(x=300, y=400)
 
-        self.button1 = tk.Button(
-            self.master, text="Generar", command=self.generar)
-        self.button1.place(x=170, y=300)
+        self.button1 = tk.Button(self.master, text="Calcular", command=self.generar)
+
+        self.button1.place(x=170, y=450)
         self.button1.config(width=25, height=2)
         self.button1.config(font=("Courier", 10))
 
         # Scroll Bar
-
         scrollbar = Scrollbar(self.master)
         scrollbar.pack(side=RIGHT, fill=Y)
 
@@ -543,19 +522,49 @@ class MG1:
     def generar(self):
 
         self.mylist.delete(0, END)
-        self.cuadrado = CuadradosMedios()
-        semilla = self.semillaEntered.get()
-        nRandoms = self.nRandomsEntered.get()
 
-        self.cuadrado.ciclo(int(semilla), int(nRandoms))
+        nLambda = int(self.nLambdaEntered.get())
+        nMiu = int(self.nMiuEntered.get())
+        nDes = int(self.nDesEntered.get())
 
-        print(self.cuadrado.listaRands)
+        if self.nNEntered.get() != "":
+            nN = int(self.nNEntered.get())
+        else:
+            nN = 0
 
-        for i in self.cuadrado.listaRands:
-            self.mylist.insert(END, i)
+        modelo = ModeloMG1(nLambda, nMiu, nN, nDes)
+        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
+        Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
+        Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
+        Cn = "Cn : " + str(round(modelo.calcularCN(), 4))
+        Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
+        L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
+        Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
+        W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+
+        self.mylist.insert(END, ro)
+        self.mylist.insert(END, Pc)
+        self.mylist.insert(END, Pn)
+        self.mylist.insert(END, Cn)
+        self.mylist.insert(END, Lq)
+        self.mylist.insert(END, L)
+        self.mylist.insert(END, Wq)
+        self.mylist.insert(END, W)
 
     def close_windows(self):
         self.master.destroy()
+
+        # Scroll Bar
+
+        scrollbar = Scrollbar(self.master)
+        scrollbar.pack(side=RIGHT, fill=Y)
+
+        self.mylist = Listbox(self.master, yscrollcommand=scrollbar.set)
+
+        self.mylist.pack(side=RIGHT, fill=BOTH)
+        self.mylist.place(x=700, y=200)
+        self.mylist.config(width=30, height=20)
+        scrollbar.config(command=self.mylist.yview)
 
 
 def main():
@@ -563,7 +572,6 @@ def main():
     root.geometry("1200x850")
 
     root.title("Colas")
-
 
     label2 = Label(root, text="Sistemas de Colas")
     label2.pack(pady=50)
