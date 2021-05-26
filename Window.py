@@ -24,8 +24,7 @@ class Demo1:
         scrollable_frame = ttk.Frame(self.canvas)
         scrollable_frame.bind(
             "<Configure>",
-            lambda e: self.canvas.configure(
-                scrollregion=self.canvas.bbox("all")),
+            lambda e: self.canvas.configure(scrollregion=self.canvas.bbox("all")),
         )
         self.canvas.create_window((0, 0), window=scrollable_frame, anchor="w")
         self.canvas.config(width=605, height=1000)
@@ -124,12 +123,10 @@ class MM1:
         self.labelMiu.config(font=("Courier", 10))
 
         self.nMiu = ""
-        self.nMiuEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nMiu)
+        self.nMiuEntered = ttk.Entry(self.master, width=40, textvariable=self.nMiu)
         self.nMiuEntered.place(x=300, y=150)
 
-        self.labelN = tk.Label(
-            self.master, text="P(n) clientes en el sistema ")
+        self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
         self.labelN.place(x=10, y=200)
         self.labelN.config(width=30)
         self.labelN.config(font=("Courier", 10))
@@ -144,8 +141,7 @@ class MM1:
         self.labelCT.config(font=("Courier", 10))
 
         self.nCT = ""
-        self.nCTEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nCT)
+        self.nCTEntered = ttk.Entry(self.master, width=40, textvariable=self.nCT)
         self.nCTEntered.place(x=300, y=300)
 
         self.labelCS = tk.Label(self.master, text="Costo servicio ")
@@ -154,12 +150,10 @@ class MM1:
         self.labelCS.config(font=("Courier", 10))
 
         self.CS = ""
-        self.nCSEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.CS)
+        self.nCSEntered = ttk.Entry(self.master, width=40, textvariable=self.CS)
         self.nCSEntered.place(x=300, y=350)
 
-        self.button1 = tk.Button(
-            self.master, text="Calcular", command=self.generar)
+        self.button1 = tk.Button(self.master, text="Calcular", command=self.generar)
 
         self.button1.place(x=170, y=400)
         self.button1.config(width=25, height=2)
@@ -268,12 +262,10 @@ class MMs:
         self.labelMiu.config(font=("Courier", 10))
 
         self.nMiu = ""
-        self.nMiuEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nMiu)
+        self.nMiuEntered = ttk.Entry(self.master, width=40, textvariable=self.nMiu)
         self.nMiuEntered.place(x=300, y=200)
 
-        self.labelN = tk.Label(
-            self.master, text="P(n) clientes en el sistema ")
+        self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
         self.labelN.place(x=10, y=250)
         self.labelN.config(width=30)
         self.labelN.config(font=("Courier", 10))
@@ -288,8 +280,7 @@ class MMs:
         self.labelCT.config(font=("Courier", 10))
 
         self.nCT = ""
-        self.nCTEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nCT)
+        self.nCTEntered = ttk.Entry(self.master, width=40, textvariable=self.nCT)
         self.nCTEntered.place(x=300, y=300)
 
         self.labelCS = tk.Label(self.master, text="Costo servicio ")
@@ -298,12 +289,10 @@ class MMs:
         self.labelCS.config(font=("Courier", 10))
 
         self.CS = ""
-        self.nCSEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.CS)
+        self.nCSEntered = ttk.Entry(self.master, width=40, textvariable=self.CS)
         self.nCSEntered.place(x=300, y=350)
 
-        self.button1 = tk.Button(
-            self.master, text="Calcular", command=self.generar)
+        self.button1 = tk.Button(self.master, text="Calcular", command=self.generar)
 
         self.button1.place(x=170, y=400)
         self.button1.config(width=25, height=2)
@@ -417,12 +406,10 @@ class MMsK:
         self.labelMiu.config(font=("Courier", 10))
 
         self.nMiu = ""
-        self.nMiuEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nMiu)
+        self.nMiuEntered = ttk.Entry(self.master, width=40, textvariable=self.nMiu)
         self.nMiuEntered.place(x=300, y=200)
 
-        self.labelN = tk.Label(
-            self.master, text="P(n) clientes en el sistema ")
+        self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
         self.labelN.place(x=10, y=250)
         self.labelN.config(width=30)
         self.labelN.config(font=("Courier", 10))
@@ -431,8 +418,7 @@ class MMsK:
         self.nNEntered = ttk.Entry(self.master, width=40, textvariable=self.nN)
         self.nNEntered.place(x=300, y=250)
 
-        self.labelK = tk.Label(
-            self.master, text="Limite de clientes en la cola(K)")
+        self.labelK = tk.Label(self.master, text="Limite de clientes en la cola(K)")
         self.labelK.place(x=10, y=300)
         self.labelK.config(width=30)
         self.labelK.config(font=("Courier", 10))
@@ -447,8 +433,7 @@ class MMsK:
         self.labelCT.config(font=("Courier", 10))
 
         self.nCT = ""
-        self.nCTEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nCT)
+        self.nCTEntered = ttk.Entry(self.master, width=40, textvariable=self.nCT)
         self.nCTEntered.place(x=300, y=350)
 
         self.labelCS = tk.Label(self.master, text="Costo servicio ")
@@ -457,12 +442,10 @@ class MMsK:
         self.labelCS.config(font=("Courier", 10))
 
         self.CS = ""
-        self.nCSEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.CS)
+        self.nCSEntered = ttk.Entry(self.master, width=40, textvariable=self.CS)
         self.nCSEntered.place(x=300, y=400)
 
-        self.button1 = tk.Button(
-            self.master, text="Calcular", command=self.generar)
+        self.button1 = tk.Button(self.master, text="Calcular", command=self.generar)
 
         self.button1.place(x=170, y=500)
         self.button1.config(width=25, height=2)
@@ -504,17 +487,14 @@ class MMsK:
         Pc = "P0 : " + str(round(modelo.P0(), 3))
         Pn = "Pn : " + str(round(modelo.Pn(), 3))
         Lq = "Lq : " + str(round(modelo.Lq(), 3)) + " clientes"
-        L = "L : " + \
-            str(round(modelo.L(), 3)) + " clientes"
+        L = "L : " + str(round(modelo.L(), 3)) + " clientes"
         Le = "Le: " + str(round(modelo.Le(), 3)) + " clientes"
         Wq = "Wq : " + str(round(modelo.Wq(), 3)) + " horas"
         W = "W : " + str(round(modelo.W(), 3)) + " horas"
 
         print(cE)
         print(Lq)
-        costoTotal = round(
-            ((round(modelo.Lq(), 4) * cE) + (cS * servidores)), 2
-        )
+        costoTotal = round(((round(modelo.Lq(), 4) * cE) + (cS * servidores)), 2)
         print(round(modelo.Lq(), 4))
         print(costoTotal)
         Costo = "Costo : $" + str(costoTotal)
@@ -567,12 +547,10 @@ class MG1:
         self.labelMiu.config(font=("Courier", 10))
 
         self.nMiu = ""
-        self.nMiuEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nMiu)
+        self.nMiuEntered = ttk.Entry(self.master, width=40, textvariable=self.nMiu)
         self.nMiuEntered.place(x=300, y=300)
 
-        self.labelN = tk.Label(
-            self.master, text="P(n) clientes en el sistema ")
+        self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
         self.labelN.place(x=10, y=350)
         self.labelN.config(width=30)
         self.labelN.config(font=("Courier", 10))
@@ -587,12 +565,10 @@ class MG1:
         self.labelDes.config(font=("Courier", 10))
 
         self.nDes = ""
-        self.nDesEntered = ttk.Entry(
-            self.master, width=40, textvariable=self.nN)
+        self.nDesEntered = ttk.Entry(self.master, width=40, textvariable=self.nN)
         self.nDesEntered.place(x=300, y=400)
 
-        self.button1 = tk.Button(
-            self.master, text="Calcular", command=self.generar)
+        self.button1 = tk.Button(self.master, text="Calcular", command=self.generar)
 
         self.button1.place(x=170, y=450)
         self.button1.config(width=25, height=2)
@@ -616,8 +592,8 @@ class MG1:
         self.mylist.delete(0, END)
 
         nLambda = int(self.nLambdaEntered.get())
-        nMiu = int(self.nMiuEntered.get())
-        nDes = int(self.nDesEntered.get())
+        nMiu = float(self.nMiuEntered.get())
+        nDes = float(self.nDesEntered.get())
 
         if self.nNEntered.get() != "":
             nN = int(self.nNEntered.get())
