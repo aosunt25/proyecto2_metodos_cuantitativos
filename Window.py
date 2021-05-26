@@ -379,7 +379,7 @@ class MMsK:
 
         # self.bg = PhotoImage(file="fondo.gif")
 
-        self.master.geometry("1100x460")
+        self.master.geometry("1200x600")
         # Show image using label
 
         self.label2 = tk.Label(self.master, text="M/M/s/K")
@@ -432,7 +432,7 @@ class MMsK:
         self.nNEntered.place(x=300, y=250)
 
         self.labelK = tk.Label(
-            self.master, text="K")
+            self.master, text="Limite de clientes en la cola(K)")
         self.labelK.place(x=10, y=300)
         self.labelK.config(width=30)
         self.labelK.config(font=("Courier", 10))
