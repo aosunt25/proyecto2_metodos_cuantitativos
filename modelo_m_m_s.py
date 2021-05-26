@@ -5,26 +5,26 @@ class ModeloMMS:
 
     def __init__(self, servidores, lambdaM, miu, n):
 
-        #lambda
+        # lambda
         self.media_llegadas = lambdaM
-        #miu
+        # miu
         self.media_servicios = miu
 
         self.servidores = servidores
 
         self.Cn = 0
 
-        #RO
-        self.factor_de_uso = self.media_llegadas/(self.media_servicios*self.servidores)
+        # RO
+        self.factor_de_uso = self.media_llegadas / \
+            (self.media_servicios*self.servidores)
 
-    
         self.Pcero = 0
 
         self.Pn = 0
-        
+
         self.lq = 0
         self.l = 0
-        
+
         self.wq = 0
         self.w = 0
         self.n = n
@@ -32,34 +32,39 @@ class ModeloMMS:
     def calcularPcero(self):
         suma = 0
         for i in range(self.servidores):
-            suma += (( self.media_llegadas/ self.media_servicios)** i)/math.factorial(i)
+            suma += ((self.media_llegadas / self.media_servicios)
+                     ** i)/math.factorial(i)
             print(suma)
 
-        self.Pcero = 1/(suma + (((( self.media_llegadas/ self.media_servicios)** self.servidores)/math.factorial( self.servidores)) * (1/(1- self.factor_de_uso))))
-
+        self.Pcero = 1/(suma + ((((self.media_llegadas / self.media_servicios) **
+                        self.servidores)/math.factorial(self.servidores)) * (1/(1 - self.factor_de_uso))))
+        print(self.Pcero)
         return self.Pcero
 
     def calcularPn(self):
         if self.n >= 0 and self.n < self.servidores:
-            self.Pn = ((self.media_llegadas/self.media_servicios)**self.n)/math.factorial(self.n)
+            self.Pn = ((self.media_llegadas/self.media_servicios)
+                       ** self.n)/math.factorial(self.n)
         elif self.n >= self.servidores:
-            self.Pn = ((self.media_llegadas/self.media_servicios)**self.n)/((math.factorial(self.servidores)*(self.servidores**(self.n-self.servidores))))*self.Pcero
+            self.Pn = ((self.media_llegadas/self.media_servicios)**self.n)/((math.factorial(
+                self.servidores)*(self.servidores**(self.n-self.servidores))))*self.Pcero
         return self.Pn
 
     def calcularLq(self):
 
-        self.lq =  (self.Pcero * pow(( self.media_llegadas/ self.media_servicios), self.servidores) * self.factor_de_uso)/(math.factorial(self.servidores)*pow(1-self.factor_de_uso,2))
-        
+        self.lq = (self.Pcero * pow((self.media_llegadas / self.media_servicios), self.servidores)
+                   * self.factor_de_uso)/(math.factorial(self.servidores)*pow(1-self.factor_de_uso, 2))
+
         return self.lq
 
     def calcularL(self):
         self.l = self.lq + self.media_llegadas/self.media_servicios
-        return self.l 
+        return self.l
 
     def calcularWq(self):
-        self.wq = self.lq / self.media_llegadas 
+        self.wq = self.lq / self.media_llegadas
         return self.wq
 
     def calcularW(self):
-        self.w = self.wq + 1/self.media_servicios 
+        self.w = self.wq + 1/self.media_servicios
         return self.w
