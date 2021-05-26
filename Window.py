@@ -521,7 +521,7 @@ class MG1:
 
         # self.bg = PhotoImage(file="fondo.gif")
 
-        self.master.geometry("1100x600")
+        self.master.geometry("1100x720")
         # Show image using label
 
         self.label2 = tk.Label(self.master, text="M/G/1")
@@ -531,7 +531,7 @@ class MG1:
 
         # Buttons
         self.labelLambda = tk.Label(self.master, text="Tasa media de llegadas")
-        self.labelLambda.place(x=10, y=250)
+        self.labelLambda.place(x=10, y=200)
         self.labelLambda.config(width=30)
         self.labelLambda.config(font=("Courier", 10))
 
@@ -539,38 +539,56 @@ class MG1:
         self.nLambdaEntered = ttk.Entry(
             self.master, width=40, textvariable=self.nLambda
         )
-        self.nLambdaEntered.place(x=300, y=250)
+        self.nLambdaEntered.place(x=300, y=200)
 
         self.labelMiu = tk.Label(self.master, text="Tasa media de servicio")
-        self.labelMiu.place(x=10, y=300)
+        self.labelMiu.place(x=10, y=250)
         self.labelMiu.config(width=30)
         self.labelMiu.config(font=("Courier", 10))
 
         self.nMiu = ""
         self.nMiuEntered = ttk.Entry(self.master, width=40, textvariable=self.nMiu)
-        self.nMiuEntered.place(x=300, y=300)
+        self.nMiuEntered.place(x=300, y=250)
 
         self.labelN = tk.Label(self.master, text="P(n) clientes en el sistema ")
-        self.labelN.place(x=10, y=350)
+        self.labelN.place(x=10, y=300)
         self.labelN.config(width=30)
         self.labelN.config(font=("Courier", 10))
 
         self.nN = ""
         self.nNEntered = ttk.Entry(self.master, width=40, textvariable=self.nN)
-        self.nNEntered.place(x=300, y=350)
+        self.nNEntered.place(x=300, y=300)
 
         self.labelDes = tk.Label(self.master, text="Desviación estándar ")
-        self.labelDes.place(x=10, y=400)
+        self.labelDes.place(x=10, y=350)
         self.labelDes.config(width=30)
         self.labelDes.config(font=("Courier", 10))
 
         self.nDes = ""
         self.nDesEntered = ttk.Entry(self.master, width=40, textvariable=self.nN)
-        self.nDesEntered.place(x=300, y=400)
+        self.nDesEntered.place(x=300, y=350)
+
+        self.labelCT = tk.Label(self.master, text="Costo por tiempo espera ")
+        self.labelCT.place(x=10, y=400)
+        self.labelCT.config(width=30)
+        self.labelCT.config(font=("Courier", 10))
+
+        self.nCT = ""
+        self.nCTEntered = ttk.Entry(self.master, width=40, textvariable=self.nCT)
+        self.nCTEntered.place(x=300, y=400)
+
+        self.labelCS = tk.Label(self.master, text="Costo servicio ")
+        self.labelCS.place(x=10, y=450)
+        self.labelCS.config(width=30)
+        self.labelCS.config(font=("Courier", 10))
+
+        self.CS = ""
+        self.nCSEntered = ttk.Entry(self.master, width=40, textvariable=self.CS)
+        self.nCSEntered.place(x=300, y=450)
 
         self.button1 = tk.Button(self.master, text="Calcular", command=self.generar)
 
-        self.button1.place(x=170, y=450)
+        self.button1.place(x=170, y=500)
         self.button1.config(width=25, height=2)
         self.button1.config(font=("Courier", 10))
 
@@ -594,6 +612,8 @@ class MG1:
         nLambda = int(self.nLambdaEntered.get())
         nMiu = float(self.nMiuEntered.get())
         nDes = float(self.nDesEntered.get())
+        cE = int(self.nCTEntered.get())
+        cS = int(self.nCSEntered.get())
 
         if self.nNEntered.get() != "":
             nN = int(self.nNEntered.get())
@@ -601,23 +621,27 @@ class MG1:
             nN = 0
 
         modelo = ModeloMG1(nLambda, nMiu, nN, nDes)
+        costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
+
         ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
         Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
         Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
-        Cn = "Cn : " + str(round(modelo.calcularCN(), 4))
+        # Cn = "Cn : " + str(round(modelo.calcularCN(), 4))
         Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
         L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
         Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
         W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+        Costo = "Costo : $" + str(costoTotal)
 
         self.mylist.insert(END, ro)
         self.mylist.insert(END, Pc)
         self.mylist.insert(END, Pn)
-        self.mylist.insert(END, Cn)
+        # self.mylist.insert(END, Cn)
         self.mylist.insert(END, Lq)
         self.mylist.insert(END, L)
         self.mylist.insert(END, Wq)
         self.mylist.insert(END, W)
+        self.mylist.insert(END, Costo)
 
     def close_windows(self):
         self.master.destroy()
