@@ -504,8 +504,9 @@ class MMsK:
         Pc = "P0 : " + str(round(modelo.P0(), 3))
         Pn = "Pn : " + str(round(modelo.Pn(), 3))
         Lq = "Lq : " + str(round(modelo.Lq(), 3)) + " clientes"
-        L = "Tasa efectiva de arribo : " + \
+        L = "L : " + \
             str(round(modelo.L(), 3)) + " clientes"
+        Le = "Le: " + str(round(modelo.Le(), 3)) + " clientes"
         Wq = "Wq : " + str(round(modelo.Wq(), 3)) + " horas"
         W = "W : " + str(round(modelo.W(), 3)) + " horas"
 
@@ -522,6 +523,7 @@ class MMsK:
         self.mylist.insert(END, Pc)
         self.mylist.insert(END, Pn)
         self.mylist.insert(END, Lq)
+        self.mylist.insert(END, Le)
         self.mylist.insert(END, L)
         self.mylist.insert(END, Wq)
         self.mylist.insert(END, W)

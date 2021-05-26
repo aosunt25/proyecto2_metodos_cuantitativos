@@ -19,6 +19,7 @@ class ModeloMMSK:
         self.pn = 0
 
         self.lq = 0
+        self.le = 0
         self.l = 0
 
         self.wq = 0
@@ -59,19 +60,20 @@ class ModeloMMSK:
         self.lq = part1 * part2
         return self.lq
 
-    def L(self):
-        self.l = self.media_llegadas * (1 - self.Pn())
-        return self.l
+    def Le(self):
+        self.le = self.media_llegadas * (1 - self.Pn())
+        return self.le
 
     def Wq(self):
-        self.wq = self.Lq() / self.L()
+        self.wq = self.Lq() / self.Le()
         return self.wq
 
     def W(self):
         self.w = self.Wq() + (1/self.media_servicios)
         return self.w
 
-
-prueba = ModeloMMSK(1, 2, 3, 3, 3)
-prueba1 = prueba.W()
-print(prueba1)
+    def L(self):
+        le = self.Le()
+        w = self.W()
+        self.l = le * w
+        return self.l
