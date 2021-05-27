@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['Window.py'],
-             pathex=['C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\proyecto2_metodos_cuantitativos'],
+             pathex=['C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\MODELOS DE FILAS DE ESPERA'],
              binaries=[],
              datas=[],
              hiddenimports=[],

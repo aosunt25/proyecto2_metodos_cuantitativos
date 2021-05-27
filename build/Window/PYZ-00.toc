@@ -1,4 +1,5 @@
-('C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\proyecto2_metodos_cuantitativos\\build\\Window\\PYZ-00.pyz',
+('C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\MODELOS '
+ 'DE FILAS DE ESPERA\\build\\Window\\PYZ-00.pyz',
  [('os', 'c:\\python39\\lib\\os.py', 'PYMODULE'),
   ('subprocess', 'c:\\python39\\lib\\subprocess.py', 'PYMODULE'),
   ('selectors', 'c:\\python39\\lib\\selectors.py', 'PYMODULE'),
@@ -352,20 +353,24 @@
   ('genericpath', 'c:\\python39\\lib\\genericpath.py', 'PYMODULE'),
   ('posixpath', 'c:\\python39\\lib\\posixpath.py', 'PYMODULE'),
   ('stat', 'c:\\python39\\lib\\stat.py', 'PYMODULE'),
-  ('_py_abc', 'c:\\python39\\lib\\_py_abc.py', 'PYMODULE'),
   ('stringprep', 'c:\\python39\\lib\\stringprep.py', 'PYMODULE'),
   ('tracemalloc', 'c:\\python39\\lib\\tracemalloc.py', 'PYMODULE'),
+  ('_py_abc', 'c:\\python39\\lib\\_py_abc.py', 'PYMODULE'),
   ('modelo_m_m_s_k',
-   'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\proyecto2_metodos_cuantitativos\\modelo_m_m_s_k.py',
+   'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\MODELOS '
+   'DE FILAS DE ESPERA\\modelo_m_m_s_k.py',
    'PYMODULE'),
   ('modelo_m_g_1',
-   'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\proyecto2_metodos_cuantitativos\\modelo_m_g_1.py',
+   'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\MODELOS '
+   'DE FILAS DE ESPERA\\modelo_m_g_1.py',
    'PYMODULE'),
   ('modelo_m_m_s',
-   'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\proyecto2_metodos_cuantitativos\\modelo_m_m_s.py',
+   'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\MODELOS '
+   'DE FILAS DE ESPERA\\modelo_m_m_s.py',
    'PYMODULE'),
   ('modelo_m_m_1',
-   'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\proyecto2_metodos_cuantitativos\\modelo_m_m_1.py',
+   'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\MODELOS '
+   'DE FILAS DE ESPERA\\modelo_m_m_1.py',
    'PYMODULE'),
   ('numpy', 'c:\\python39\\lib\\site-packages\\numpy\\__init__.py', 'PYMODULE'),
   ('numpy.core._dtype_ctypes',
