@@ -543,7 +543,7 @@ class MG1:
         self.master.geometry("1100x720")
         # Show image using label
 
-        self.label2 = tk.Label(self.master, text="M/G/1")
+        self.label2 = tk.Label(self.master, text="M/G/1 o M/D/1")
         self.label2.pack(pady=25)
         self.label2.config(width=200)
         self.label2.config(font=("Courier", 44))
@@ -644,8 +644,11 @@ class MG1:
                 END,
                 "La desviación estándar tiene que ser positiva",
             )
-        else:
 
+            
+            
+
+        else:
             if nLambda < nMiu:
                 modelo = ModeloMG1(nLambda, nMiu, nN, nDes)
                 costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
@@ -660,6 +663,10 @@ class MG1:
                 W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
                 Costo = "Costo : $" + str(costoTotal)
 
+                if (nDes == 0):
+                    self.mylist.insert(END, "Estás usando las fórmulas de MD1")
+
+                self.mylist.insert(END, "Estás usando las fórmulas de MG1")
                 self.mylist.insert(END, ro)
                 self.mylist.insert(END, Pc)
                 self.mylist.insert(END, Pn)

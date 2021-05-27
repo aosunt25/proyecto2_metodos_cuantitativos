@@ -47,13 +47,18 @@ class ModeloMG1:
             )
         return self.Pn
 
-    # Fórmula de Pollaczek-Khintchine
+    # Fórmula de Pollaczek-Khintchin
     def calcularLq(self):
-        self.lq = (
-            pow(self.media_llegadas, 2) * pow(self.desviacion_estandard, 2)
-            + pow(self.factor_de_uso, 2)
-        ) / (2 * (1 - self.factor_de_uso))
-        return self.lq
+        if self.desviacion_estandard > 0:
+            self.lq = (
+                pow(self.media_llegadas, 2) * pow(self.desviacion_estandard, 2)
+                + pow(self.factor_de_uso, 2)
+            ) / (2 * (1 - self.factor_de_uso))
+            return self.lq
+
+        elif self.desviacion_estandard == 0:
+            self.lq = (pow(self.factor_de_uso, 2)) / (2 * (1 - self.factor_de_uso))
+            return self.lq
 
     def calcularL(self):
         self.l = self.factor_de_uso + self.lq
