@@ -104,7 +104,7 @@ class MM1:
         self.label2 = tk.Label(self.master, text="M/M/1")
         self.label2.pack(pady=25)
         self.label2.config(width=200)
-        self.label2.config(font=("Courier", 44))
+        self.label2.config(font=("Courier", 23))
 
         self.labelLambda = tk.Label(self.master, text="Tasa media de llegadas")
         self.labelLambda.place(x=10, y=100)
@@ -191,16 +191,16 @@ class MM1:
         modelo = ModeloMMUno(nLambda, nMiu, nN)
 
         if nLambda < nMiu:
-            costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
+            costoTotal =((modelo.calcularLq() * cE) + cS * 1, 2)
 
-            ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
-            Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
-            Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
-            # Cn = "Cn : " + str(round(modelo.calcularCN(),4))
-            Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
-            L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
-            Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
-            W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+            ro = "Factor de utilizacion " + str(modelo.factor_de_uso)
+            Pc = "P0 : " + str(modelo.calcularPcero())
+            Pn = "Pn : " + str(modelo.calcularPn())
+            # Cn = "Cn : " + str(modelo.calcularCN(
+            Lq = "Lq : " + str(modelo.calcularLq()) + " clientes"
+            L = "L : " + str(modelo.calcularL()) + " clientes"
+            Wq = "Wq : " + str(modelo.calcularWq()) + " horas"
+            W = "W : " + str(modelo.calcularW()) + " horas"
             Costo = "Costo : $" + str(costoTotal)
 
             self.mylist.insert(END, ro)
@@ -235,7 +235,7 @@ class MMs:
         self.label2 = tk.Label(self.master, text="M/M/s")
         self.label2.pack(pady=25)
         self.label2.config(width=200)
-        self.label2.config(font=("Courier", 44))
+        self.label2.config(font=("Courier", 23))
 
         # Add buttons
         # clientes, lambdaM, miu, n
@@ -337,20 +337,20 @@ class MMs:
         print(servidores)
 
         if nLambda < nMiu:
-            ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
-            Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
-            Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
-            Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
-            L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
-            Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
-            W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+            ro = "Factor de utilizacion " + str(modelo.factor_de_uso)
+            Pc = "P0 : " + str(modelo.calcularPcero())
+            Pn = "Pn : " + str(modelo.calcularPn())
+            Lq = "Lq : " + str(modelo.calcularLq()) + " clientes"
+            L = "L : " + str(modelo.calcularL()) + " clientes"
+            Wq = "Wq : " + str(modelo.calcularWq()) + " horas"
+            W = "W : " + str(modelo.calcularW()) + " horas"
 
             print(cE)
             print(Lq)
-            costoTotal = round(
-                ((round(modelo.calcularLq(), 4) * cE) + (cS * servidores)), 2
+            costoTotal =(
+                ((modelo.calcularLq() * cE) + (cS * servidores)), 2
             )
-            print(round(modelo.calcularLq(), 4))
+            print(modelo.calcularLq())
             print(costoTotal)
             Costo = "Costo : $" + str(costoTotal)
 
@@ -387,7 +387,7 @@ class MMsK:
         self.label2 = tk.Label(self.master, text="M/M/s/K")
         self.label2.pack(pady=25)
         self.label2.config(width=200)
-        self.label2.config(font=("Courier", 44))
+        self.label2.config(font=("Courier",23))
         # Add buttons
         # clientes, lambdaM, miu, n
 
@@ -497,19 +497,19 @@ class MMsK:
 
             print(servidores)
 
-            ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 3))
-            Pc = "P0 : " + str(round(modelo.P0(), 3))
-            Pn = "Pn : " + str(round(modelo.Pn(), 3))
-            Lq = "Lq : " + str(round(modelo.Lq(), 3)) + " clientes"
-            L = "L : " + str(round(modelo.L(), 3)) + " clientes"
-            Le = "Le: " + str(round(modelo.Le(), 3)) + " clientes"
-            Wq = "Wq : " + str(round(modelo.Wq(), 3)) + " horas"
-            W = "W : " + str(round(modelo.W(), 3)) + " horas"
+            ro = "Factor de utilizacion " + str(modelo.factor_de_uso)
+            Pc = "P0 : " + str(modelo.P0())
+            Pn = "Pn : " + str(modelo.Pn())
+            Lq = "Lq : " + str(modelo.Lq()) + " clientes"
+            L = "L : " + str(modelo.L()) + " clientes"
+            Le = "Le: " + str(modelo.Le()) + " clientes"
+            Wq = "Wq : " + str(modelo.Wq()) + " horas"
+            W = "W : " + str(modelo.W()) + " horas"
 
             print(cE)
             print(Lq)
-            costoTotal = round(((round(modelo.Lq(), 4) * cE) + (cS * servidores)), 2)
-            print(round(modelo.Lq(), 4))
+            costoTotal =(((modelo.Lq() * cE) + (cS * servidores)), 2)
+            print(modelo.Lq())
             print(costoTotal)
             Costo = "Costo : $" + str(costoTotal)
 
@@ -546,7 +546,7 @@ class MG1:
         self.label2 = tk.Label(self.master, text="M/G/1 o M/D/1")
         self.label2.pack(pady=25)
         self.label2.config(width=200)
-        self.label2.config(font=("Courier", 44))
+        self.label2.config(font=("Courier",23))
 
         # Buttons
         self.labelLambda = tk.Label(self.master, text="Tasa media de llegadas")
@@ -651,16 +651,16 @@ class MG1:
         else:
             if nLambda < nMiu:
                 modelo = ModeloMG1(nLambda, nMiu, nN, nDes)
-                costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
+                costoTotal =((modelo.calcularLq() * cE) + cS * 1, 2)
 
-                ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
-                Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
-                Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
-                # Cn = "Cn : " + str(round(modelo.calcularCN(), 4))
-                Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
-                L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
-                Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
-                W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+                ro = "Factor de utilizacion " + str(modelo.factor_de_uso)
+                Pc = "P0 : " + str(modelo.calcularPcero())
+                Pn = "Pn : " + str(modelo.calcularPn())
+                # Cn = "Cn : " + str(modelo.calcularCN())
+                Lq = "Lq : " + str(modelo.calcularLq()) + " clientes"
+                L = "L : " + str(modelo.calcularL()) + " clientes"
+                Wq = "Wq : " + str(modelo.calcularWq()) + " horas"
+                W = "W : " + str(modelo.calcularW()) + " horas"
                 Costo = "Costo : $" + str(costoTotal)
 
                 if (nDes == 0):
@@ -707,7 +707,7 @@ def main():
     label2 = Label(root, text="Sistemas de Colas")
     label2.pack(pady=50)
     label2.config(width=200)
-    label2.config(font=("Courier", 44))
+    label2.config(font=("Courier",23))
     app = Demo1(root)
     root.mainloop()
 
