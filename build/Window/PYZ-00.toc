@@ -354,8 +354,8 @@
   ('posixpath', 'c:\\python39\\lib\\posixpath.py', 'PYMODULE'),
   ('stat', 'c:\\python39\\lib\\stat.py', 'PYMODULE'),
   ('stringprep', 'c:\\python39\\lib\\stringprep.py', 'PYMODULE'),
-  ('tracemalloc', 'c:\\python39\\lib\\tracemalloc.py', 'PYMODULE'),
   ('_py_abc', 'c:\\python39\\lib\\_py_abc.py', 'PYMODULE'),
+  ('tracemalloc', 'c:\\python39\\lib\\tracemalloc.py', 'PYMODULE'),
   ('modelo_m_m_s_k',
    'C:\\Users\\fabri\\OneDrive\\Documents\\Escuela\\ITC8\\Metodos\\Proyecto2_Final\\MODELOS '
    'DE FILAS DE ESPERA\\modelo_m_m_s_k.py',

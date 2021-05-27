@@ -190,27 +190,33 @@ class MM1:
 
         modelo = ModeloMMUno(nLambda, nMiu, nN)
 
-        costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
+        if nLambda < nMiu:
+            costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
 
-        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
-        Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
-        Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
-        # Cn = "Cn : " + str(round(modelo.calcularCN(),4))
-        Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
-        L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
-        Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
-        W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
-        Costo = "Costo : $" + str(costoTotal)
+            ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
+            Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
+            Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
+            # Cn = "Cn : " + str(round(modelo.calcularCN(),4))
+            Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
+            L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
+            Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
+            W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+            Costo = "Costo : $" + str(costoTotal)
 
-        self.mylist.insert(END, ro)
-        self.mylist.insert(END, Pc)
-        self.mylist.insert(END, Pn)
-        # self.mylist.insert(END, Cn)
-        self.mylist.insert(END, Lq)
-        self.mylist.insert(END, L)
-        self.mylist.insert(END, Wq)
-        self.mylist.insert(END, W)
-        self.mylist.insert(END, Costo)
+            self.mylist.insert(END, ro)
+            self.mylist.insert(END, Pc)
+            self.mylist.insert(END, Pn)
+            # self.mylist.insert(END, Cn)
+            self.mylist.insert(END, Lq)
+            self.mylist.insert(END, L)
+            self.mylist.insert(END, Wq)
+            self.mylist.insert(END, W)
+            self.mylist.insert(END, Costo)
+        else:
+            self.mylist.insert(
+                END,
+                "La media de llegadas tiene que ser mayor a la tasa media de servicios",
+            )
 
     def close_windows(self):
         self.master.destroy()
@@ -330,32 +336,39 @@ class MMs:
 
         print(servidores)
 
-        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
-        Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
-        Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
-        Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
-        L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
-        Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
-        W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+        if nLambda < nMiu:
+            ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
+            Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
+            Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
+            Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
+            L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
+            Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
+            W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
 
-        print(cE)
-        print(Lq)
-        costoTotal = round(
-            ((round(modelo.calcularLq(), 4) * cE) + (cS * servidores)), 2
-        )
-        print(round(modelo.calcularLq(), 4))
-        print(costoTotal)
-        Costo = "Costo : $" + str(costoTotal)
+            print(cE)
+            print(Lq)
+            costoTotal = round(
+                ((round(modelo.calcularLq(), 4) * cE) + (cS * servidores)), 2
+            )
+            print(round(modelo.calcularLq(), 4))
+            print(costoTotal)
+            Costo = "Costo : $" + str(costoTotal)
 
-        self.mylist.insert(END, ro)
-        self.mylist.insert(END, Pc)
-        self.mylist.insert(END, Pn)
-        self.mylist.insert(END, Lq)
-        self.mylist.insert(END, L)
-        self.mylist.insert(END, Wq)
-        self.mylist.insert(END, W)
+            self.mylist.insert(END, ro)
+            self.mylist.insert(END, Pc)
+            self.mylist.insert(END, Pn)
+            self.mylist.insert(END, Lq)
+            self.mylist.insert(END, L)
+            self.mylist.insert(END, Wq)
+            self.mylist.insert(END, W)
 
-        self.mylist.insert(END, Costo)
+            self.mylist.insert(END, Costo)
+
+        else:
+            self.mylist.insert(
+                END,
+                "La media de llegadas tiene que ser mayor a la tasa media de servicios",
+            )
 
     def close_windows(self):
         self.master.destroy()
@@ -478,37 +491,43 @@ class MMsK:
             nN = int(self.nNEntered.get())
         else:
             nN = 0
+        if nLambda < nMiu:
 
-        modelo = ModeloMMSK(servidores, nLambda, nMiu, nN, k)
+            modelo = ModeloMMSK(servidores, nLambda, nMiu, nN, k)
 
-        print(servidores)
+            print(servidores)
 
-        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 3))
-        Pc = "P0 : " + str(round(modelo.P0(), 3))
-        Pn = "Pn : " + str(round(modelo.Pn(), 3))
-        Lq = "Lq : " + str(round(modelo.Lq(), 3)) + " clientes"
-        L = "L : " + str(round(modelo.L(), 3)) + " clientes"
-        Le = "Le: " + str(round(modelo.Le(), 3)) + " clientes"
-        Wq = "Wq : " + str(round(modelo.Wq(), 3)) + " horas"
-        W = "W : " + str(round(modelo.W(), 3)) + " horas"
+            ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 3))
+            Pc = "P0 : " + str(round(modelo.P0(), 3))
+            Pn = "Pn : " + str(round(modelo.Pn(), 3))
+            Lq = "Lq : " + str(round(modelo.Lq(), 3)) + " clientes"
+            L = "L : " + str(round(modelo.L(), 3)) + " clientes"
+            Le = "Le: " + str(round(modelo.Le(), 3)) + " clientes"
+            Wq = "Wq : " + str(round(modelo.Wq(), 3)) + " horas"
+            W = "W : " + str(round(modelo.W(), 3)) + " horas"
 
-        print(cE)
-        print(Lq)
-        costoTotal = round(((round(modelo.Lq(), 4) * cE) + (cS * servidores)), 2)
-        print(round(modelo.Lq(), 4))
-        print(costoTotal)
-        Costo = "Costo : $" + str(costoTotal)
+            print(cE)
+            print(Lq)
+            costoTotal = round(((round(modelo.Lq(), 4) * cE) + (cS * servidores)), 2)
+            print(round(modelo.Lq(), 4))
+            print(costoTotal)
+            Costo = "Costo : $" + str(costoTotal)
 
-        self.mylist.insert(END, ro)
-        self.mylist.insert(END, Pc)
-        self.mylist.insert(END, Pn)
-        self.mylist.insert(END, Lq)
-        self.mylist.insert(END, Le)
-        self.mylist.insert(END, L)
-        self.mylist.insert(END, Wq)
-        self.mylist.insert(END, W)
+            self.mylist.insert(END, ro)
+            self.mylist.insert(END, Pc)
+            self.mylist.insert(END, Pn)
+            self.mylist.insert(END, Lq)
+            self.mylist.insert(END, Le)
+            self.mylist.insert(END, L)
+            self.mylist.insert(END, Wq)
+            self.mylist.insert(END, W)
 
-        self.mylist.insert(END, Costo)
+            self.mylist.insert(END, Costo)
+        else:
+            self.mylist.insert(
+                END,
+                "La media de llegadas tiene que ser mayor a la tasa media de servicios",
+            )
 
     def close_windows(self):
         self.master.destroy()
@@ -620,28 +639,41 @@ class MG1:
         else:
             nN = 0
 
-        modelo = ModeloMG1(nLambda, nMiu, nN, nDes)
-        costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
+        if nDes < 0:
+            self.mylist.insert(
+                END,
+                "La desviación estándar tiene que ser positiva",
+            )
+        else:
 
-        ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
-        Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
-        Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
-        # Cn = "Cn : " + str(round(modelo.calcularCN(), 4))
-        Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
-        L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
-        Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
-        W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
-        Costo = "Costo : $" + str(costoTotal)
+            if nLambda < nMiu:
+                modelo = ModeloMG1(nLambda, nMiu, nN, nDes)
+                costoTotal = round((modelo.calcularLq() * cE) + cS * 1, 2)
 
-        self.mylist.insert(END, ro)
-        self.mylist.insert(END, Pc)
-        self.mylist.insert(END, Pn)
-        # self.mylist.insert(END, Cn)
-        self.mylist.insert(END, Lq)
-        self.mylist.insert(END, L)
-        self.mylist.insert(END, Wq)
-        self.mylist.insert(END, W)
-        self.mylist.insert(END, Costo)
+                ro = "Factor de utilizacion " + str(round(modelo.factor_de_uso, 4))
+                Pc = "P0 : " + str(round(modelo.calcularPcero(), 4))
+                Pn = "Pn : " + str(round(modelo.calcularPn(), 4))
+                # Cn = "Cn : " + str(round(modelo.calcularCN(), 4))
+                Lq = "Lq : " + str(round(modelo.calcularLq(), 4)) + " clientes"
+                L = "L : " + str(round(modelo.calcularL(), 4)) + " clientes"
+                Wq = "Wq : " + str(round(modelo.calcularWq(), 4)) + " horas"
+                W = "W : " + str(round(modelo.calcularW(), 4)) + " horas"
+                Costo = "Costo : $" + str(costoTotal)
+
+                self.mylist.insert(END, ro)
+                self.mylist.insert(END, Pc)
+                self.mylist.insert(END, Pn)
+                # self.mylist.insert(END, Cn)
+                self.mylist.insert(END, Lq)
+                self.mylist.insert(END, L)
+                self.mylist.insert(END, Wq)
+                self.mylist.insert(END, W)
+                self.mylist.insert(END, Costo)
+            else:
+                self.mylist.insert(
+                    END,
+                    "La media de llegadas tiene que ser mayor a la tasa media de servicios",
+                )
 
     def close_windows(self):
         self.master.destroy()
