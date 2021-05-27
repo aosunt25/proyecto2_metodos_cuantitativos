@@ -6,7 +6,7 @@ class ModeloMG1:
         # lambda
         self.media_llegadas = lambdaM
         # miu
-        self.media_servicios = 1 / miu
+        self.media_servicios = miu
         # sigma
         self.desviacion_estandard = desviacion
         # servidores
