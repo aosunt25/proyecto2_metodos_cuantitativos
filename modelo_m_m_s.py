@@ -43,8 +43,8 @@ class ModeloMMS:
 
     def calcularPn(self):
         if self.n >= 0 and self.n < self.servidores:
-            self.Pn = ((self.media_llegadas/self.media_servicios)
-                       ** self.n)/math.factorial(self.n)
+            self.Pn = (((self.media_llegadas/self.media_servicios)
+                       ** self.n)/math.factorial(self.n))*self.Pcero
         elif self.n >= self.servidores:
             self.Pn = ((self.media_llegadas/self.media_servicios)**self.n)/((math.factorial(
                 self.servidores)*(self.servidores**(self.n-self.servidores))))*self.Pcero
